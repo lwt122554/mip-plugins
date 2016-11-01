@@ -3,6 +3,7 @@ define('mip-ck-ad', ['require', 'customElement', 'zepto'], function (require) {
     var $ = require('zepto');
 
     var customElem = require('customElement').create();
+    var $body = $('body');
 
     // 直投广告请求url
     var ajaxurl = 'https://s.cnkang.com/ad/showcodejsonp';
@@ -46,17 +47,20 @@ define('mip-ck-ad', ['require', 'customElement', 'zepto'], function (require) {
                                 element.html(v);
                                 break;
                         }
+                        $body.addClass('view-ad-' + (+k) + '-ck');
                     }
                     else {
                         switch (+k) {
                             case 52:
-                                var $body = $('body');
-                                element.html('<mip-ad layout="container"'
+                                element.html('<div class="ck-ad-52">'
+                                    + '<span class="btn-ck-ad-52"'
+                                    + 'on="tap:ck-ad-52.close">关闭</span>'
+                                    + '</div><mip-ad layout="container"'
                                     + 'cpro_psid="u2422282" type="ad-qwang" cpro_psheight="120">'
                                     + '</mip-ad>');
-                                $body.css('padding-bottom', '120px !important;');
                                 break;
                         }
+                        $body.addClass('view-ad-' + (+k) + '-union');
                     }
                 });
             }
