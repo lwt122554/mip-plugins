@@ -337,6 +337,16 @@ define('mip-ifeng-pptdetail', ['require', 'ppt', 'gloableSettings', 'customEleme
     }
 
     function initShareEvent() {
+        var isWeixin = /MicroMessenger/.test(navigator.userAgent);
+        if (!isWeixin) {
+            var shareList = $('#black2 .c-share-list');
+            shareList.addClass('js-share');
+            shareList.find('.c-share-btn').each(function (index, dom) {
+                if (index !== 0 && index !== 1) {
+                    $(dom).remove();
+                }
+            });
+        }
         shareBtn.on('touchend', function () {
             shareDom.show();
         });
