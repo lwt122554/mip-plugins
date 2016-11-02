@@ -277,7 +277,7 @@ define('mip-ifeng-pptdetail', ['require', 'pptIfeng', 'gloableSettingsIfeng', 'c
     // mip 组件开发支持 zepto
     var $ = require('zepto');
     var customElem = require('customElement').create();
-
+    var textadDom = $('.picTxtBox');
     var textBox = $('.picsBox .picTxt');
     var pageBox = textBox.find('.picPage');
     var pageDom = pageBox.find('#DB_current');
@@ -325,6 +325,7 @@ define('mip-ifeng-pptdetail', ['require', 'pptIfeng', 'gloableSettingsIfeng', 'c
         textBox.removeAttr('style');
         // 滑动的最后一帧是广告
         if (swiper.page < swiper.pageTotal) {
+            textadDom.height(172);
             pageDom.html(swiper.page); // 改变页码
             textDom.eq(swiper.page - 1).show().siblings().hide();
             // 隐藏分享和广告
@@ -339,6 +340,7 @@ define('mip-ifeng-pptdetail', ['require', 'pptIfeng', 'gloableSettingsIfeng', 'c
             $('.picsTit').removeClass('js-title-top');
             textBox.removeClass('js-summary-top');
             pageBox.removeClass('picPageOnly');
+            textadDom.height(0);
         }
         // 发送统计
         sendSta(swiper.page, swiper.pageTotal);
