@@ -240,6 +240,8 @@ define('mip-ifeng-pptdetail', ['require', 'ppt', 'gloableSettings', 'customEleme
     var textBox = $('.picsBox .picTxt');
     var pageDom = textBox.find('.picPage #DB_current');
     var textDom = textBox.find('ul li');
+    var shareBtn = $('.picsShare');
+    var shareDom = $('#black2');
     window.location.hash = 'imgnum=1';
     var hasNextDoc = !!gloableSettings.nextDataId;
     var hasPreDoc = !!gloableSettings.preDataId;
@@ -334,6 +336,17 @@ define('mip-ifeng-pptdetail', ['require', 'ppt', 'gloableSettings', 'customEleme
         });
     }
 
+    function initShareEvent() {
+        shareBtn.on('touchend', function () {
+            shareDom.show();
+        });
+        shareDom.on('touchend', function (e) {
+            if (!$(e.target).closest('.c-span3').length) {
+                $(this).hide();
+            }
+        });
+    }
+
     customElem.prototype.build = function () {
         var element = this.element;
         var index = 1;
@@ -391,6 +404,7 @@ define('mip-ifeng-pptdetail', ['require', 'ppt', 'gloableSettings', 'customEleme
                 }
             });
         initTextEvent(textBox);
+        initShareEvent();
     };
     return customElem;
 });

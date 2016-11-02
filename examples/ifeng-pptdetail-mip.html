@@ -362,7 +362,7 @@
             }
 
             #black2 {
-                background: rgba(0,0,0,0.3);
+                background: rgba(0,0,0,0.7);
                 width: 100%;
                 height: 100%;
                 position: fixed;
@@ -370,6 +370,21 @@
                 left: 0;
                 z-index: 5;
                 display: none
+            }
+            #black2 .c-share-list{
+                padding:17px 0;
+                background: none;
+            }
+            #black2 .mip-layout-container{
+                top:50%;
+                margin-top: -60px;
+            }
+            #black2 .c-line-clamp1{
+                display: none;
+            }
+            #black2 .c-share-list .c-row{
+                width: 84%;
+                margin:0 8%;
             }
 
             .picsShareBox {
@@ -722,6 +737,14 @@
         </div>
     </div>
     </mip-ifeng-pptdetail>
+    <div id="black2">
+        <mip-share 
+            title="分享出去的标题" 
+            url="分享的连接" 
+            content="分享的内容" 
+            iconUrl="分享所带的图片地址">
+        </mip-share>
+    </div>
 </div>
 <script src="https://mipcache.bdstatic.com/static/mipmain-v1.1.0.js" ></script>
 <script src="https://mipcache.bdstatic.com/static/v1.1/mip-form.js"></script>
