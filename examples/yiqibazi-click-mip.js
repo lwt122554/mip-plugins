@@ -1,4 +1,4 @@
-define('mip-yiqibazi-click', ['require', 'customElement', 'zepto'], function (require) {
+define('extensions/mip-yiqibazi-click', ['require', 'customElement', 'zepto'], function (require) {
     var $ = require('zepto');
     var customElement = require('customElement').create();
 
@@ -44,7 +44,7 @@ define('mip-yiqibazi-click', ['require', 'customElement', 'zepto'], function (re
     return customElement;
 })
 
-require(['mip-yiqibazi-click'], function (plugindemo) {
+require(['extensions/mip-yiqibazi-click'], function (plugindemo) {
     // 注册mip-yiqibazi-script组件
     MIP.registerMipElement('mip-yiqibazi-click', plugindemo);
 });
