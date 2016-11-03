@@ -55,13 +55,7 @@ define('pptIfeng', ['require'], function (require) {
 
             index = loop ? this.page : this.page - 1; // 滑动系数
             // 滑动方向
-            if (arg.direction === 'vertical') {
-                // 垂直滑动
-                vertical = true;
-            }
-            else {
-                vertical = false;
-            }
+            vertical = (arg.direction === 'vertical') ? true : false;
 
             this.x = 0; // 记录首次触碰的x坐标
             this.y = 0; // 记录首次触碰的y坐标

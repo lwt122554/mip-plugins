@@ -77,36 +77,18 @@ define('mip-ifeng-ppt', ['require', 'customElement', 'zepto'], function (require
         };
 
         var build = function (index, onShow, slideDirection) {
-            if ((index - onShow) > 0) {
-                if (index - onShow === len - 1) {
-                    self.slideBox[index].style.marginLeft = sortWidth + 'px';
-                    self.slideBox[onShow].style.marginLeft = itemWidth + 'px';
-                    sliderTranslate = itemWidth;
-
-                    slider.scrollLeft = itemWidth + 'px';
-                } else {
-                    self.slideBox[index].style.marginLeft = 0;
-                    self.slideBox[onShow].style.marginLeft = 0;
-                    sliderTranslate = -itemWidth;
-
-                    slider.scrollLeft = 0;
-                }
-
-            } else {
-                if (index - onShow === 1 - len) {
-                    self.slideBox[index].style.marginLeft = itemWidth + 'px';
-                    self.slideBox[onShow].style.marginLeft = sortWidth + 'px';
-                    sliderTranslate = -itemWidth;
-
-                    slider.scrollLeft = 0;
-                } else {
-                    self.slideBox[index].style.marginLeft = 0;
-                    self.slideBox[onShow].style.marginLeft = 0;
-                    sliderTranslate = itemWidth;
-
-                    slider.scrollLeft = itemWidth + 'px';
-                }
-
+            var mul = index > onShow ? 1 : -1;
+            var diff = mul * (index - onShow);
+            if(diff === len - 1){
+                self.slideBox[index].style.marginLeft = mul > 0 ? sortWidth + 'px' : itemWidth + 'px';
+                self.slideBox[onShow].style.marginLeft = mul > 0 ? itemWidth + 'px' : sortWidth + 'px';
+                sliderTranslate = mul * itemWidth;
+                slider.scrollLeft = mul > 0 ? itemWidth + 'px' : 0;
+            }else{
+                self.slideBox[index].style.marginLeft = 0;
+                self.slideBox[onShow].style.marginLeft = 0;
+                sliderTranslate = -mul * itemWidth;
+                slider.scrollLeft = mul > 0 ?  0 : itemWidth + 'px';
             }
             self.slideBox[index].style.display = '';
         };
