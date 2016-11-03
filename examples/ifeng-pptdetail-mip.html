@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html mip>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v1.1.0.css">
+        <link rel="canonical" href="https://www.mipengine.org/">
+        <link rel="standardhtml" href="https://www.mipengine.org/">
+        <style mip-custom>
+            /*重置*/
+            body,div,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,iframe,input,textarea,select,label,article,aside,footer,header,menu,nav,section,time,audio,video {
+                margin: 0;
+                padding: 0
+            }
+
+            article,aside,footer,header,hgroup,nav,section,audio,canvas,video {
+                display: block
+            }
+
+            body {
+                font-size: 100%;
+                font-family: Helvetica,STHeiti,Droid Sans Fallback;
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+                color: #000;
+                font-size: 17px;
+                -webkit-overflow-scrolling: touch
+            }
+
+            a {
+                text-decoration: none;
+                color: #000
+            }
+
+            h1,h2,h3,h4 {
+                font-weight: 100
+            }
+
+            img {
+                display: block
+            }
+
+            .clearfix:after {
+                content: "";
+                display: block;
+                height: 0;
+                clear: both
+            }
+
+            .clearfix {
+                *zoom:1
+            }
+
+            .fl {
+                float: left
+            }
+
+            .fr {
+                float: right
+            }
+
+            .wrap {
+                width: 94%;
+                padding: 0 3%;
+                overflow: hidden
+            }
+
+            .wy {
+                font-family: Microsoft YaHei
+            }
+
+            html,body {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background: #000
+            }
+
+            .picsTitL a,.picsCmt,.picsShare,.add_access,.picsShareBox a,.picsTit1L,.picsTit1R,.picPage {
+                background: url(http://p0.ifengimg.com/fe/iifeng_pics/images/sprite_49869fa1.png) no-repeat;
+                background-size: 500px auto
+            }
+
+            .picsMain {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative
+            }
+            /*页头*/
+            .picsTit {
+                width: 100%;
+                height: 50px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: top .3s;
+                -webkit-transition: top .3s;
+                z-index: 2;
+                background: rgba(0,0,0,0.7)
+            }
+
+            .picsTit>.wrap {
+                height: 50px;
+                display: box;
+                box-align: center;
+                box-pack: justify;
+                display: -webkit-box;
+                -webkit-box-align: center;
+                -webkit-box-pack: justify
+            }
+
+            .picsTitL a {
+                height: 21px;
+                width: 21px;
+                display: inline-block;
+                background-position: 0 1px
+            }
+
+            .picsTitL img {
+                display: inline-block
+            }
+
+            .picsTitR div {
+                float: left;
+                margin-right: 16px;
+                font-size: 12px;
+                color: #fff;
+                line-height: 20px
+            }
+
+            .picsTitR .picsCmt {
+                display: none;
+                height: 20px;
+                background-position: 0 -99px;
+                padding-left: 28px;
+                display: box;
+                box-pack: center;
+                /*display: -webkit-box;
+                -webkit-box-pack: center*/
+            }
+
+            .picsTitR .picsShare {
+                width: 23px;
+                height: 20px;
+                background-position: -250px -100px;
+                display: block;
+                margin-right: 0
+            }
+
+            .picsTitR a.add_access {
+                height: 20px;
+                background-position: 0 -200px;
+                padding-left: 32px
+            }
+
+            .picsTit h4 {
+                font-size: 18px;
+                line-height: 52px;
+                color: #FFF;
+                height: 62px;
+                display: none;
+                width: 76%;
+                width: calc(100% - 84px);
+                margin-right: 42px;
+                text-align: center
+            }
+            /*幻灯*/
+            .pptcontainer{
+                display: inline;
+            }
+            .picsBox {
+                width: 100%;
+                height: 100%;
+                position: relative
+            }
+
+            .swiper-container {
+                width: 100%;
+                height: 100%
+            }
+
+            .swiper-wrapper {
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-transform-style: preserve-3d;
+                -moz-transform-style: preserve-3d;
+                -ms-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+                -webkit-transition-property: -webkit-transform;
+                -moz-transition-property: -moz-transform;
+                -o-transition-property: -o-transform;
+                -ms-transition-property: -ms-transform;
+                transition-property: transform;
+                -webkit-box-sizing: content-box;
+                -moz-box-sizing: content-box;
+                box-sizing: content-box;
+                -webkit-transform: translate3d(0,0,0);
+                -moz-transform: translate3d(0,0,0);
+                -o-transform: translate(0,0);
+                -ms-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+                position: relative;
+            }
+
+            .swiper-slide {
+                width: 100%;
+                height: 100%;
+                display: box;
+                box-align: center;
+                box-pack: center;
+                display: -webkit-box;
+                -webkit-box-align: center;
+                -webkit-transform-style: preserve-3d;
+                -moz-transform-style: preserve-3d;
+                -ms-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+                -webkit-flex-shrink: 0;
+                -ms-flex: 0 0 auto;
+                flex-shrink: 0;
+                position: relative;
+            }
+
+            .swiper-slide img {
+                margin-top: -20px;
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: calc(100% - 54px);
+            }
+
+            .swiper-slide>img {
+                margin-top: -54px;
+                width: auto;
+                max-width: 100%;
+                max-height: calc(100% - 54px)
+            }
+
+           .swiper-slide .mip-img{
+                width: auto;
+                margin:0 auto;
+           }
+
+            .picTxtBox {
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: bottom .3s;
+                -webkit-transition: bottom .3s;
+                z-index: 5;
+                height: 172px
+            }
+
+            .picTxt {
+                background: rgba(0,0,0,0.7);
+                width: 100%;
+                padding-top: 1px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                min-height: 122px;
+                transition: top .3s;
+                -webkit-transition: top .3s;
+            }
+
+            .picTxt ul {
+                transition: top .3s;
+                -webkit-transition: top .3s;
+                overflow: hidden;
+                margin: 8px 0
+            }
+
+            .picTxt ul li {
+                display: none;
+                width: 94%;
+                margin: 0 auto;
+                overflow: hidden;
+                text-align: justify
+            }
+
+            .picTxt ul li:first-child {
+                display: block
+            }
+
+            .picTxt ul li h2 {
+                font-size: 18px;
+                color: #b9b9b9;
+                margin: 0 0 5px;
+                line-height: 22px
+            }
+
+            .picTxt ul li p {
+                font-size: 13px;
+                color: #b9b9b9;
+                line-height: 21px
+            }
+
+            .picPage {
+                position: absolute;
+                right: 3%;
+                top: 9px;
+                background: rgba(0,0,0,0.2);
+                padding: 2px 4px
+            }
+
+            .picPageOnly {
+                position: fixed;
+                top: 15px;
+                right: 15px;
+                background: none;
+            }
+
+            .picPage span {
+                color: #fff;
+                margin-left: 4px;
+                font-size: 12px
+            }
+
+            #DB_current {
+                font-size: 20px
+            }
+
+            .bomBox {
+                height: 53px;
+                width: 100%;
+                border-top: 1px solid #9a9a9a;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                display: box;
+                box-align: center;
+                box-pack: center;
+                display: -webkit-box;
+                -webkit-box-align: center;
+                -webkit-box-pack: center
+            }
+
+            .bomBox img {
+                max-height: 90%;
+                max-width: 94%
+            }
+
+            .picTxt ul li h2 {
+                color: #fff;
+                height: 24px;
+                line-height: 24px;
+                overflow: hidden
+            }
+
+            .picTxt ul li p {
+                color: #888;
+                font-size: 14px;
+                line-height: 24px
+            }
+
+            .picTxt ul li h2 {
+                width: 85%
+            }
+            /*分享*/
+            #black2 {
+                background: rgba(0,0,0,0.7);
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 5;
+                display: none
+            }
+            #black2 .c-share-list{
+                padding:17px 0;
+                background: none;
+            }
+            #black2 .mip-layout-container{
+                top:50%;
+                margin-top: -60px;
+            }
+            #black2 .c-line-clamp1{
+                display: none;
+            }
+            #black2 .c-share-list .c-row{
+                width: 84%;
+                margin:0 8%;
+            }
+            #black2 .js-share .c-span3{
+                margin-right: 7%;
+            }
+            #black2 .js-share .c-row{
+                width: 46%;
+                margin:0 27%;
+            }
+
+            .picsShareBox {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                z-index: 30;
+                width: 244px;
+                margin-left: -122px;
+                margin-top: -31px;
+                display: none
+            }
+
+            .picsShareBox a {
+                width: 62px;
+                height: 62px;
+                display: block;
+                float: left;
+                margin: 0 30px
+            }
+
+            .picsShareBox a.picsSina {
+                background-position: 0 -400px
+            }
+
+            .picsShareBox a.picsQQ {
+                background-position: -250px -400px
+            }
+
+            .swiper-slide.lastSlideBox {
+                display: block
+            }
+
+            .lastSlide {
+                width: 90%;
+                padding: 0 5%;
+                height: 100%;
+                overflow-y: scroll
+            }
+
+            .picsTit1 {
+                width: 100%;
+                height: 60px;
+                margin-bottom: 22px;
+                display: box;
+                box-align: center;
+                box-pack: justify;
+                display: -webkit-box;
+                -webkit-box-align: center;
+                -webkit-box-pack: justify
+            }
+
+            .picsTit1L {
+                width: 12px;
+                height: 25px;
+                background-position: 0 3px
+            }
+
+            .picsTit1R {
+                width: 73px;
+                height: 25px;
+                background-position: 0 -100px
+            }
+
+            .recPic {
+                width: 100%;
+                display: box;
+                box-align: center;
+                box-pack: justify;
+                display: -webkit-box;
+                -webkit-box-align: center;
+                -webkit-box-pack: justify
+            }
+
+            .recPic div {
+                width: 48%
+            }
+
+            .recPic img {
+                width: 100%
+            }
+
+            .recPic p {
+                font-size: 13px;
+                color: #b9b9b9;
+                line-height: 19px;
+                padding-top: 7px;
+                min-height: 49px;
+                text-align: justify
+            }
+
+            .picsTit1 {
+                margin-bottom: 4px
+            }
+
+            .recPic p {
+                height: 40px;
+                padding: 0;
+                margin: 7px 0;
+                overflow: hidden;
+                min-height: 40px
+            }
+
+            .picTxt ul li p {
+                margin-top: 8px
+            }
+
+            #covered {
+                position: fixed;
+                z-index: 888;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: black;
+                opacity: .5;
+                display: none
+            }
+
+            #poplayer {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                z-index: 8888;
+                padding: 0 7%;
+                transition: all .3s;
+                display: none;
+                opacity: 0
+            }
+
+            #close-img {
+                position: absolute;
+                bottom: -20px;
+                right: 7%;
+                width: 70px
+            }
+
+            .swiper-slide:nth-last-child(1) {
+                display: block;
+                overflow-y: scroll
+            }
+
+            .lastT {
+                width: 94%;
+                margin: 72px auto 25px
+            }
+
+            .lastB {
+                width: 94%;
+                margin: 0 auto;
+                border-top: 1px solid #9a9a9a;
+                padding-top: 20px
+            }
+            .lastB .nextppt{
+                float: left;
+                margin-top: 20px;
+            }
+
+            .lastB a img {
+                width: 80px;
+                float: left
+            }
+
+            .lastB a>div {
+                padding: 8px 0 0 100px;
+                line-height: 24px
+            }
+
+            .lastB a>div h3 {
+                font-size: 14px;
+                color: #fff;
+                height: 24px;
+                overflow: hidden
+            }
+
+            .lastB a>div p {
+                font-size: 11px;
+                color: #e5e5e5
+            }
+
+            .lastItems {
+                width: 100%;
+                height: 26px;
+                position: fixed;
+                bottom: 10px;
+                left: 0;
+                visibility: hidden;
+                display: box;
+                box-align: center;
+                box-pack: center;
+                display: -webkit-box;
+                -webkit-box-align: center;
+                -webkit-box-pack: center
+            }
+
+            .lastItems p {
+                width: 5px;
+                height: 5px;
+                background: #535353;
+                border-radius: 50%;
+                margin: 0 2px
+            }
+            /*幻灯滑动用*/
+            .js-anim {-webkit-transition-duration: .3s;-ms-transition-duration: .3s,-moz-transition-duration:.3s,-o-transition-duration:.3s;transition-duration: .3s}
+            .js-title-top{top:-60px;}
+            .js-summary-top{top:217px;}
+            .js-hide{display: none;}
+        </style>
+    </head>
+<body>
+<mip-ifeng-sta>
+    <script type="application/json">
+    {
+        "domain":  "inews.ifeng.com",
+        "channelPath": "/newsapp/clintslide/",
+        "pt":"photo",
+        "docType": "slide",
+        "nextDataId":"50180525",
+        "preDataId":"50180883",
+        "suffixUrl":"http://inews.ifeng.com/mip/",
+        "comment":{
+          "docUrl":"http://news.ifeng.com/a/20161031/50180720_0.shtml",
+          "docName": "朴槿惠闺蜜崔顺实回国画面曝光",
+          "dataId":"50180720",
+          "docType":"0",
+          "skey":"1A976B",
+          "pageUrl":"http://inews.ifeng.com/50180720/news.shtml"
+        }
+    }
+    </script>
+</mip-ifeng-sta>
+<div class="picsMain">
+    <!--picsTit-->
+    <div class="picsTit" id="picsTit">
+        <div class="wrap">
+            <div class="picsTitL">
+                <a href="http://i.ifeng.com/" target="_blank"></a>
+                <mip-img 
+                class="mip-img"  
+                alt="" 
+                width="98"
+                height="21"
+                src="http://p0.ifengimg.com/fe/iifeng_pics/images/iifengPicLogo_a36ffc59.png">
+                </mip-img>
+            </div>
+            <h4>图集推荐</h4>
+            <div class="picsTitR">
+                <div class="picsCmt" id="picsCmt"></div>
+                <div class="picsShare" id="picsShare"></div>
+            </div>
+        </div>
+    </div>
+
+    <mip-ifeng-pptdetail class="pptcontainer">
+    <div class="picsBox" id="picsBox">
+        <div class="swiper-container swiper-container-horizontal">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <mip-img 
+                    class="mip-img swiper-lazy"  
+                    alt="" 
+                    src="http://d.ifengimg.com/q70/p0.ifengimg.com/a/2016_45/2c7c2fa8342a1d5_size30_w398_h598.jpg">
+                    </mip-img>
+                </div>
+                <div class="swiper-slide">
+                    <mip-img 
+                    class="mip-img swiper-lazy"  
+                    alt="" 
+                    src="http://d.ifengimg.com/q70/p2.ifengimg.com/a/2016_45/cfa82387a19f543_size42_w836_h598.jpg">
+                    </mip-img>
+                </div>
+                <div class="swiper-slide">
+                    <mip-img 
+                    class="mip-img swiper-lazy"  
+                    alt="" 
+                    src="http://d.ifengimg.com/q70/p2.ifengimg.com/a/2016_45/e1009f1a14b8456_size44_w338_h598.jpg">
+                    </mip-img>
+                </div>
+                <div class="swiper-slide">
+                    <mip-img 
+                    class="mip-img swiper-lazy"  
+                    alt="" 
+                    src="http://d.ifengimg.com/q70/p2.ifengimg.com/a/2016_45/e1009f1a14b8456_size44_w338_h598.jpg">
+                    </mip-img>
+                </div>
+                <div class="swiper-slide">
+                    <mip-img 
+                    class="mip-img swiper-lazy"  
+                    alt="" 
+                    src="http://d.ifengimg.com/q70/p2.ifengimg.com/a/2016_45/e1009f1a14b8456_size44_w338_h598.jpg">
+                    </mip-img>
+                </div>
+                <div class="swiper-slide">
+                    <div class="lastT">
+                        <a href="http://www.ifeng.com/" target="_blank">
+                        <mip-img 
+                            class="mip-img"  
+                            alt="" 
+                            src="http://d.ifengimg.com/w160_h120/p0.ifengimg.com/a/2016_45/a92779dbeca8a20_size64_w850_h554.jpg">
+                        </mip-img>
+                        </a>
+                    </div>
+                    <div class="lastB">
+                        <a href="http://www.ifeng.com/" target="_blank">
+                        <mip-img 
+                            class="mip-img nextppt"  
+                            alt="" 
+                            src="http://d.ifengimg.com/w160_h120/p0.ifengimg.com/a/2016_45/a92779dbeca8a20_size64_w850_h554.jpg">
+                        </mip-img>
+                            <div>
+                                <h3>冬天悄悄来临，各地陆续迎初雪</h3>
+                                <p>左滑进入下一图集&gt;&gt;</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="picTxtBox">
+            <div class="picTxt clearfix" id="picTxt">
+                <div class="picPage" id="picPage"><span id="DB_current">1</span><span class="line02">/</span><span id="DB_total">0</span></div>
+                <ul>
+                    <li>
+                        <h2>朴槿惠闺蜜崔顺实回国画面曝光</h2>
+                        <p>韩联社30日报道，涉嫌干政的韩国总统朴槿惠“闺蜜”崔顺实在欧洲躲藏近两个月后，于30日上午7时30分从英国乘飞机回国。崔顺实表示为配合调查而返回，并为各种指控给韩国民众带来影响道歉。律师表示，目前正和检方沟通具体调查事宜。而崔顺实的女儿郑某并未和崔一同回国。图为当地时间2016年10月30日，韩国仁川国际机场，朴槿惠“干政”闺蜜崔顺实从英国乘飞机返回韩国。</p>
+                    </li>
+                    <li>
+                        <h2>朴槿惠闺蜜崔顺实回国画面曝光</h2>
+                        <p>崔顺实涉嫌介入Mir财团和K体育财团创立，筹集800亿韩元的基金，并通过德国和韩国多家公司挪用公款，将这两个财团私有化。她还涉嫌审阅朴槿惠讲稿，曾接触青瓦台机密文件，并被指“走后门”让其女儿郑某以“马术特长生”资格考入梨花女子大学。图为朴槿惠“干政”闺蜜崔顺实从英国回国。</p>
+                    </li>
+                    <li>
+                        <h2>朴槿惠闺蜜崔顺实回国画面曝光</h2>
+                        <p>就在此前一天，韩国检方突击搜查了朴槿惠多名现任和前任助手的住所和办公室，带走一些电脑、文件和移动设备。不过，检察人员没有直接对朴槿惠的住所和办公室进行搜查，只索要了一些相关文件。图为朴槿惠“干政”闺蜜崔顺实从英国回国。图为崔顺实。（资料图）</p>
+                    </li>
+                    <li>
+                        <h2>朴槿惠闺蜜崔顺实回国画面曝光</h2>
+                        <p>当地时间2016年10月30日，韩国首尔，朴槿惠“干政”闺蜜崔顺实代理律师李炅接受记者采访。崔顺实的律师接受媒体采访表示，崔顺实回国是为了接受检察官的审讯，且会完全配合调查。</p>
+                    </li>
+                    <li>
+                        <h2>朴槿惠闺蜜崔顺实回国画面曝光</h2>
+                        <p>崔顺实的律师说，考虑到崔的身体情况和长途飞行劳顿，他已请求检察官晚一天传唤崔，给她一天的休息时间。检察官也表示，他们不会在周日就传唤崔顺实。律师说，“她对于她的行为引起的失望和争议向公众致以最大的歉意。”不过该律师拒绝就她受到的指控发表评论。图为朴槿惠“干政”闺蜜崔顺实辩护律师召开记者会。</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bomBox">
+            <mip-img 
+                class="mip-img"  
+                alt="" 
+                src="http://img1.360buyimg.com/pop/jfs/t3655/319/477953028/30161/59a2a283/580df551N137ccd7e.jpg">
+            </mip-img>
+            </div>
+        </div>
+    </div>
+    </mip-ifeng-pptdetail>
+    <div id="black2">
+        <mip-share 
+            title="分享出去的标题" 
+            url="分享的连接" 
+            content="分享的内容" 
+            iconUrl="分享所带的图片地址">
+        </mip-share>
+    </div>
+</div>
+<script src="https://mipcache.bdstatic.com/static/mipmain-v1.1.0.js" ></script>
+<script src="https://mipcache.bdstatic.com/static/v1.1/mip-share.js"></script>
+<script src="../extensions/mip-ifeng-pptdetail/0.1/mip-ifeng-pptdetail.js"></script>
+</body>
+</html>
